@@ -26,11 +26,11 @@
     }
   },
   "bugs": {
-    "url": "https://github.com/wpkyoto/lambda-logger/issues"
+    "url": "https://github.com/digitalcube/username-validator/issues"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/wpkyoto/lambda-logger.git"
+    "url": "https://github.com/digitalcube/username-validator.git"
   },
   "prettier": {
     "printWidth": 80,
