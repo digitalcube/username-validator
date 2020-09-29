@@ -2,7 +2,7 @@ import { UsernameValidator } from './Validator';
 import { ValidationCallback, ValidatorOptions } from 'interfaces';
 export * from './Validator';
 export * from './interfaces';
-export * from './errors/InvalidUsernameError'
+export * from './errors/InvalidUsernameError';
 
 /**
  * Simply wrapper of username validator
