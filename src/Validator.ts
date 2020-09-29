@@ -1,4 +1,4 @@
-import {InvalidUsernameError} from './errors/InvalidUsernameError';
+import { InvalidUsernameError } from './errors/InvalidUsernameError';
 import reservedUsernameJSON from './reserved-usernames';
 import { ValidatorOptions } from './interfaces';
 
@@ -26,12 +26,12 @@ import { ValidatorOptions } from './interfaces';
  */
 export class UsernameValidator {
   private readonly username: string;
-  private readonly blockLists: string[] = []
+  private readonly blockLists: string[] = [];
 
-  constructor(username: string, options?:ValidatorOptions) {
+  constructor(username: string, options?: ValidatorOptions) {
     this.username = username;
     if (options && options.blockLists) {
-      this.blockLists = options.blockLists
+      this.blockLists = options.blockLists;
     }
   }
 
@@ -44,18 +44,22 @@ export class UsernameValidator {
 
   private isReserverdUsername() {
     if (this.blockLists.indexOf(this.username) !== -1) {
-      throw new InvalidUsernameError(`Username: ${this.username} is already exists.`);
+      throw new InvalidUsernameError(
+        `Username: ${this.username} is already exists.`
+      );
     }
     const reservedUsernames = this.getReserverUsernames();
     if (reservedUsernames.indexOf(this.username) !== -1) {
-      throw new InvalidUsernameError(`Username: ${this.username} is already exists.`);
+      throw new InvalidUsernameError(
+        `Username: ${this.username} is already exists.`
+      );
     }
   }
 
   private isValidUsernameSyntax() {
     if (!/^[a-zA-Z0-9.\-_]{1,64}$/.test(this.username)) {
       throw new InvalidUsernameError(
-        'Username should be 64 letters or less and is only allowed to contain alphanumeric, dot (.), hyphen (-) and underscore (_).',
+        'Username should be 64 letters or less and is only allowed to contain alphanumeric, dot (.), hyphen (-) and underscore (_).'
       );
     }
   }
