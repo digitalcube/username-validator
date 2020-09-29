@@ -7,6 +7,25 @@ export * from './interfaces';
  * Simply wrapper of username validator
  * @param username
  * @param callback
+ * @example
+ * ```
+ * validateUsername('example_new_username')
+ *
+ * validateUsername('example_new_username', {
+ *  blockLists: ['custom', 'user', 'names']
+ * })
+ *
+ * validateUsername('example_new_username', {
+ *  blockLists: ['custom', 'user', 'names']
+ * }, {
+ *  succeeded: username => {
+ *    console.log(`${username} is valid`)
+ *  },
+ *  failed: username => {
+ *    console.error(`${username} is invalid`)
+ *  }
+ * })
+ * ```
  */
 export const validateUsername = (
   username: string,

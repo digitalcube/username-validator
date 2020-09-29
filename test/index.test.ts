@@ -44,6 +44,37 @@ describe('src/classes/validator/Username', () => {
           }
         }
       );
+      describe('custom callback', () => {
+        const mockSucceeded = jest.fn();
+        const mockFailed = jest.fn();
+        const callValidator = (username: string) => {
+          validateUsername(
+            username,
+            {},
+            {
+              succeeded: mockSucceeded,
+              failed: mockFailed,
+            }
+          );
+        };
+        afterEach(() => {
+          mockFailed.mockClear();
+          mockSucceeded.mockClear();
+        });
+        it('should call succeeded when pass it', () => {
+          callValidator('hello');
+          expect(mockSucceeded).toHaveBeenCalledWith('hello');
+          expect(mockFailed).toHaveBeenCalledTimes(0);
+        });
+        it('should call failed when failed it', () => {
+          callValidator('test');
+          expect(mockFailed).toHaveBeenCalledWith(
+            'test',
+            new InvalidUsernameError('Username: test is already exists.')
+          );
+          expect(mockSucceeded).toHaveBeenCalledTimes(0);
+        });
+      });
     });
   });
 });
