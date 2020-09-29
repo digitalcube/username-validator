@@ -38,15 +38,15 @@ export class UsernameValidator {
   /**
    * Get Digitalcube reserverd username lists
    */
-  private async getReserverUsernames() {
+  private getReserverUsernames() {
     return reservedUsernameJSON;
   }
 
-  private async isReserverdUsername() {
+  private isReserverdUsername() {
     if (this.blockLists.indexOf(this.username) !== -1) {
       throw new InvalidUsernameError(`Username: ${this.username} is already exists.`);
     }
-    const reservedUsernames = await this.getReserverUsernames();
+    const reservedUsernames = this.getReserverUsernames();
     if (reservedUsernames.indexOf(this.username) !== -1) {
       throw new InvalidUsernameError(`Username: ${this.username} is already exists.`);
     }
@@ -63,8 +63,8 @@ export class UsernameValidator {
   /**
    * Validate New Username
    */
-  async validate() {
+  validate() {
     this.isValidUsernameSyntax();
-    await this.isReserverdUsername();
+    this.isReserverdUsername();
   }
 }

@@ -4,31 +4,29 @@ import { testCase } from './testCase';
 
 describe('src/classes/validator/Username', () => {
   describe('validateUsername()', () => {
-    it.each(testCase)('Given %p, should %p', async (username, promiseResult, errorMessage) => {
-      const promiseTask = validateUsername(username);
+    it.each(testCase)('Given %p, should %p', (username, promiseResult, errorMessage) => {
       if (promiseResult === 'resolve') {
-        await expect(promiseTask).resolves.not.toThrowError();
+        expect(() => validateUsername(username)).not.toThrowError();
       } else {
-        await expect(promiseTask).rejects.toThrowError(
+        expect(() => validateUsername(username)).toThrowError(
           InvalidUsernameError,
         );
-        await expect(promiseTask).rejects.toThrowError(
+        expect(() => validateUsername(username)).toThrowError(
           errorMessage,
         );
       }
     });
   });
   describe('UsernameValidator class', () => {
-    it.each(testCase)('Given %p, should %p', async (username, promiseResult, errorMessage) => {
+    it.each(testCase)('Given %p, should %p', (username, promiseResult, errorMessage) => {
       const c = new UsernameValidator(username);
-      const promiseTask = c.validate();
       if (promiseResult === 'resolve') {
-        await expect(promiseTask).resolves.not.toThrowError();
+        expect(() => c.validate()).not.toThrowError();
       } else {
-        await expect(promiseTask).rejects.toThrowError(
+        expect(() => c.validate()).toThrowError(
           InvalidUsernameError,
         );
-        await expect(promiseTask).rejects.toThrowError(
+        expect(() => c.validate()).toThrowError(
           errorMessage,
         );
       }
